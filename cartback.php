@@ -20,10 +20,9 @@ define('CARTBACK_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CARTBACK_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 include(CARTBACK_PLUGIN_PATH . 'admin/settings.php');
-// include(CARTBACK_PLUGIN_PATH . 'vendor/MailChimp.php');
-// include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
-// TODO: make me ...
-//  include(CARTBACK_PLUGIN_PATH . 'includes/untag.php');
+include(CARTBACK_PLUGIN_PATH . 'vendor/MailChimp.php');
+include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
+include(CARTBACK_PLUGIN_PATH . 'includes/untag.php');
 
 add_action('wp_enqueue_scripts', 'cartback_enqueue_scripts_styles');
 
@@ -32,28 +31,3 @@ function cartback_enqueue_scripts_styles() {
     wp_enqueue_script('cartback-checkout', CARTBACK_PLUGIN_URL . '/public/cartback.min.js', array(), false, true);
   }
 }
-
-$CB_SETTINGS = get_option('cartback_setting');
-$MC_API_KEY = $CB_SETTINGS['api_key'];
-$MC_LIST_ID = $CB_SETTINGS['list_id'];
-$MC_TAG = $CB_SETTINGS['mailchimp_tag'];
-
-function cartback_untag() {
-  global $MC_TAG;
-  global $MC_API_KEY;
-  global $MC_LIST_ID;
-  $test = "teasdfklaskjdf";
-
-  var_dump([
-    'tag' => $MC_TAG,
-    'apiKey' => $MC_API_KEY,
-    'listId' => $MC_LIST_ID
-  ]);
-}
-
-add_action('rest_api_init', function () {
-  register_rest_route('cartback/v1', '/untag', array(
-    'methods' => 'GET',
-    'callback' => 'cartback_untag'
-  ));
-});

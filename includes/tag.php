@@ -2,9 +2,10 @@
 
 defined('ABSPATH') || exit;
 
-$MC_API_KEY = get_option('cartback_setting', 'api_key');
-$MC_LIST_ID = get_option('cartback_setting', 'list_id');
-$MC_TAG = get_option('cartback_setting', 'mailchimp_tag');
+$CB_SETTINGS = get_option('cartback_setting');
+$MC_API_KEY = $CB_SETTINGS['api_key'];
+$MC_LIST_ID = $CB_SETTINGS['list_id'];
+$MC_TAG = $CB_SETTINGS['mailchimp_tag'];
 
 use \DrewM\MailChimp\MailChimp;
 
