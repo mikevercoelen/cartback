@@ -43,20 +43,18 @@ function cartback_thankyou_page() {
     $order = new WC_Order($order_id);
     $email = $order->get_billing_email();
 
-    var_dump($email);
+    $subscriber_hash = MailChimp::subscriberHash($email);
+    $is_subscribed = cartback_mc_is_subscribed($email);
 
-//     $subscriber_hash = MailChimp::subscriberHash($email);
-//     $is_subscribed = cartback_mc_is_subscribed($email);
-//
-//     if (!$is_subscribed) {
-//       return false;
-//     }
-//
-//     cartback_mc_add_tags($subscriber_hash, array(
-//       [
-//         'name' => $MC_TAG,
-//         'status' => $MC_TAG_STATUS_INACTIVE
-//       ]
-//     ));
+    if (!$is_subscribed) {
+      return false;
+    }
+
+    cartback_mc_add_tags($subscriber_hash, array(
+      [
+        'name' => $MC_TAG,
+        'status' => $MC_TAG_STATUS_INACTIVE
+      ]
+    ));
   }
 }
