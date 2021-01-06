@@ -72,16 +72,16 @@ class CartBack_Settings {
 		}
 
 		// Admin Page Layout
-		echo '<div class="wrap">' . "n";
-		echo '  <h1>' . get_admin_page_title() . '</h1>' . "n";
-		echo '  <form action="options.php" method="post">' . "n";
+		echo '<div class="wrap">';
+		echo '  <h1>' . get_admin_page_title() . '</h1>';
+		echo '  <form action="options.php" method="post">';
 
 		settings_fields( 'cartback_settings' );
 		do_settings_sections( 'cartback_setting' );
 		submit_button();
 
-		echo '  </form>' . "n";
-		echo '</div>' . "n";
+		echo '  </form>';
+		echo '</div>';
 
 	}
 
