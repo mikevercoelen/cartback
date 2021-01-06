@@ -19,7 +19,6 @@ defined('ABSPATH') || exit;
 define('CARTBACK_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CARTBACK_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
-include(CARTBACK_PLUGIN_PATH . 'constants/settings.php');
 include(CARTBACK_PLUGIN_PATH . 'admin/settings.php');
 // include(CARTBACK_PLUGIN_PATH . 'vendor/MailChimp.php');
 // include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
