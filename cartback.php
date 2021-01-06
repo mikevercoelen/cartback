@@ -33,6 +33,10 @@ function cartback_enqueue_scripts_styles() {
   }
 }
 
+$MC_API_KEY = get_option('cartback_setting', 'api_key');
+$MC_LIST_ID = get_option('cartback_setting', 'list_id');
+$MC_TAG = get_option('cartback_setting', 'mailchimp_tag');
+
 function cartback_untag() {
   global $MC_TAG;
   global $MC_API_KEY;
