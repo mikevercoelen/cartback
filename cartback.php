@@ -28,7 +28,7 @@ $MC_LIST_ID = $CB_SETTINGS['list_id'];
 
 use \DrewM\MailChimp\MailChimp;
 
-if ( !empty($MC_API_KEY && $MC_LIST_ID) ) {
+// if ( !empty($MC_API_KEY && $MC_LIST_ID) ) {
   include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
 
   add_action('wp_enqueue_scripts', 'cartback_checkout_page');
@@ -64,4 +64,4 @@ if ( !empty($MC_API_KEY && $MC_LIST_ID) ) {
       ));
     }
   }
-}
+// }
