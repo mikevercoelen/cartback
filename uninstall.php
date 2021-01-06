@@ -2,7 +2,10 @@
 
 if (!defined('WP_UNINSTALL_PLUGIN')) exit;
 
-// if (!get_option('uninstall_remove', false)) exit;
+$CB_SETTINGS = get_option('cartback_setting');
+$UNINSTALL_CHECKED = $CB_SETTINGS['uninstall_remove'];
+
+if (!$UNINSTALL_CHECKED) exit;
 
 delete_option('cartback_setting');
 

@@ -21,18 +21,18 @@ define('CARTBACK_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 include(CARTBACK_PLUGIN_PATH . 'admin/settings.php');
 
-// $CB_SETTINGS = get_option('cartback_setting');
-// $MC_API_KEY = $CB_SETTINGS['api_key'];
-// $MC_LIST_ID = $CB_SETTINGS['list_id'];
+use \DrewM\MailChimp\MailChimp;
 
-// if ( !empty($MC_API_KEY && $MC_LIST_ID) ) {
+$CB_SETTINGS = get_option('cartback_setting');
+$MC_API_KEY = $CB_SETTINGS['api_key'];
+$MC_LIST_ID = $CB_SETTINGS['list_id'];
+
+if ( !empty($MC_API_KEY && $MC_LIST_ID) ) {
   include(CARTBACK_PLUGIN_PATH . 'vendor/MailChimp.php');
   include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
 
   add_action('wp_enqueue_scripts', 'cartback_checkout_page');
   add_action( 'wp_enqueue_scripts', 'cartback_thankyou_page' );
-
-  use \DrewM\MailChimp\MailChimp;
 
   function cartback_checkout_page() {
     if (class_exists('woocommerce') && is_checkout()) {
@@ -64,4 +64,4 @@ include(CARTBACK_PLUGIN_PATH . 'admin/settings.php');
       ));
     }
   }
-// }
+}
