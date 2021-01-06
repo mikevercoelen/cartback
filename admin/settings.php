@@ -1,3 +1,6 @@
+<?php
+defined('ABSPATH') || exit;
+
 class CartBack_Settings {
 
 public function __construct() {
@@ -138,7 +141,7 @@ function render_uninstall_remove_field() {
 
 	// Field output.
 	echo '<input type="checkbox" name="cartback_setting[uninstall_remove][]" class="uninstall_remove_field" value="' . esc_attr( '' ) . '" ' . ( in_array( '', $value )? 'checked="checked"' : '' ) . '> ' . __( '', 'cartback' ) . '<br>';
-	echo '<p class="description">' . __( 'Check this box if you'd like these settings to be cleared and removed form the database when you uninstall this plugin.', 'cartback' ) . '</p>';
+	echo '<p class="description">' . __( 'Check this box if you\'d like these settings to be cleared and removed form the database when you uninstall this plugin.', 'cartback' ) . '</p>';
 
 }
 
