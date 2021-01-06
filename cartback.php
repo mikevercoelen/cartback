@@ -19,6 +19,7 @@ defined('ABSPATH') || exit;
 define('CARTBACK_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CARTBACK_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
+include(CARTBACK_PLUGIN_PATH . 'constants/settings.php');
 include(CARTBACK_PLUGIN_PATH . 'admin/settings.php');
 // include(CARTBACK_PLUGIN_PATH . 'vendor/MailChimp.php');
 // include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
@@ -33,9 +34,10 @@ function cartback_enqueue_scripts_styles() {
   }
 }
 
-$MC_API_KEY = get_option('cartback_setting', 'api_key');
-$MC_LIST_ID = get_option('cartback_setting', 'list_id');
-$MC_TAG = get_option('cartback_setting', 'mailchimp_tag');
+$CB_SETTINGS = get_option('cartback_setting');
+$MC_API_KEY = $CB_SETTINGS['api_key'];
+$MC_LIST_ID = $CB_SETTINGS['list_id'];
+$MC_TAG = $CB_SETTINGS['mailchimp_tag'];
 
 function cartback_untag() {
   global $MC_TAG;
