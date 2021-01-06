@@ -45,7 +45,9 @@ function cartback_untag() {
   $test = "teasdfklaskjdf";
 
   var_dump([
-    'test' => $test
+    'tag' => $MC_TAG,
+    'apiKey' => $MC_API_KEY,
+    'listId' => $MC_LIST_ID
   ]);
 }
 
