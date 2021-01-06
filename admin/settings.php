@@ -11,8 +11,8 @@ class CartBack_Inject_Checkout_Scripts_Settings {
   public function add_admin_menu() {
     add_submenu_page(
       'woocommerce',
-      esc_html__('Inject Checkout Scripts Settings', 'cartback'),
-      esc_html__('Checkout Scripts', 'cartback'),
+      esc_html__('CartBack Settings', 'cartback'),
+      esc_html__('CartBack', 'cartback'),
       'manage_options',
       'cartback',
       array($this, 'page_layout')
