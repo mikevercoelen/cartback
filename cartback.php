@@ -1,17 +1,17 @@
 <?php
 
 /*
-  Plugin Name: 	CartBack
-  Plugin URI:		https://github.com/mikevercoelen/cartback
-  Description: 	Abandoned cart Mailchimp automation for WooCommerce
-  Version: 		0.1
-  Author: 		Benbodhi
-  Author URI: 	https://benbodhi.com
-  Text Domain: 	cartback
-  Domain Path:	/languages
-  License: 		GPLv2 or later
-  License URI:	http://www.gnu.org/licenses/gpl-2.0.html
-	Copyright 2021 and beyond | Benbodhi (email : wp@benbodhi.com)
+  Plugin Name:  CartBack
+  Plugin URI:   https://github.com/mikevercoelen/cartback
+  Description:  Abandoned cart Mailchimp automation for WooCommerce
+  Version:    0.1
+  Author:     Benbodhi
+  Author URI:   https://benbodhi.com
+  Text Domain:  cartback
+  Domain Path:  /languages
+  License:    GPLv2 or later
+  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+  Copyright 2021 and beyond | Benbodhi (email : wp@benbodhi.com)
 */
 
 defined('ABSPATH') || exit;
@@ -23,10 +23,16 @@ include(CARTBACK_PLUGIN_PATH . 'admin/settings.php');
 include(CARTBACK_PLUGIN_PATH . 'vendor/MailChimp.php');
 include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
 
-add_action('wp_enqueue_scripts', 'cartback_enqueue_scripts_styles');
+add_action('wp_enqueue_scripts', 'cartback_checkout_page');
 
-function cartback_enqueue_scripts_styles() {
+function cartback_checkout_page() {
   if (class_exists('woocommerce') && is_checkout()) {
     wp_enqueue_script('cartback-checkout', CARTBACK_PLUGIN_URL . '/public/cartback.min.js', array(), false, true);
+  }
+}
+
+function cartback_thankyou_page() {
+  if (class_exists('woocommerce') && is_order_received_page()) {
+    // Thank you page code
   }
 }
