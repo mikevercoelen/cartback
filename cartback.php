@@ -29,6 +29,6 @@ add_action('wp_enqueue_scripts', 'cartback_enqueue_scripts_styles');
 
 function cartback_enqueue_scripts_styles() {
   if (class_exists('woocommerce') && is_checkout()) {
-    wp_enqueue_script('ics-checkout', CARTBACK_PLUGIN_URL . '/public/cartback.min.js', array(), false, true);
+    wp_enqueue_script('cartback-checkout', CARTBACK_PLUGIN_URL . '/public/cartback.min.js', array(), false, true);
   }
 }
