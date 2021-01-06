@@ -26,6 +26,7 @@ include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
 include(CARTBACK_PLUGIN_PATH . 'includes/untag.php');
 
 add_action('wp_enqueue_scripts', 'cartback_checkout_page');
+add_action( 'wp_enqueue_scripts', 'cartback_thankyou_page' );
 
 function cartback_checkout_page() {
   if (class_exists('woocommerce') && is_checkout()) {
