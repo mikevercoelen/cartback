@@ -1,8 +1,8 @@
 {
-  "name": "inject-checkout-scripts-js",
+  "name": "cartback",
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode=production",
     "clean": "./scripts/clean.sh",
     "lint": "eslint . --fix"
   },

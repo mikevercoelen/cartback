@@ -2,7 +2,7 @@ const path = require('path')
 const pkg = require('./package.json')
 
 const ROOT_PATH = path.resolve(__dirname)
-const SRC_PATH = path.resolve(ROOT_PATH, 'src')
+const SRC_PATH = path.resolve(ROOT_PATH, 'js')
 const OUTPUT_PATH = path.resolve(ROOT_PATH, 'public')
 
 module.exports = {
