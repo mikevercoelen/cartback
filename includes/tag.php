@@ -6,7 +6,7 @@ $CB_SETTINGS = get_option('cartback_setting');
 $MC_API_KEY = $CB_SETTINGS['api_key'];
 $MC_LIST_ID = $CB_SETTINGS['list_id'];
 $MC_TAG = $CB_SETTINGS['mailchimp_tag'];
-$MC_TAG_HARDCODED = 'cartback';
+$MC_TAG_HARDCODED = '_cartback';
 
 use \DrewM\MailChimp\MailChimp;
 
