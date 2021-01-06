@@ -56,8 +56,6 @@ function cartback_handle_mailchimp($email) {
   $member = cartback_mc_get_member($subscriber_hash);
   $member_status = $member['status'];
 
-  var_dump($member_status);
-
   if ($member_status == $MC_MEMBER_STATUS_NOT_FOUND) {
     cartback_mc_subscribe($email);
   }
