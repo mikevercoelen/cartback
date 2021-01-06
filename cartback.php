@@ -43,7 +43,7 @@ function cartback_untag() {
   global $MC_TAG;
   global $MC_API_KEY;
   global $MC_LIST_ID;
-  $test = "message";
+  $test = "teasdfklaskjdf";
 
   var_dump([
     'test' => $test
