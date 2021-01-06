@@ -48,12 +48,6 @@ function cartback_untag() {
   var_dump([
     'test' => $test
   ]);
-
-  var_dump([
-    'apiKey' => $MC_API_KEY,
-    'listId' => $MC_LIST_ID,
-    'tag' => $MC_TAG
-  ]);
 }
 
 add_action('rest_api_init', function () {
