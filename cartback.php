@@ -21,7 +21,7 @@ define('CARTBACK_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 include(CARTBACK_PLUGIN_PATH . 'admin/settings.php');
 include(CARTBACK_PLUGIN_PATH . 'vendor/MailChimp.php');
-include(CARTBACK_PLUGIN_PATH . 'includes/flag.php');
+// include(CARTBACK_PLUGIN_PATH . 'includes/flag.php');
 // TODO: make me ...
 //  include(CARTBACK_PLUGIN_PATH . 'includes/unflag.php');
 
