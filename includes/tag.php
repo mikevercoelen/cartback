@@ -72,15 +72,15 @@ function cartback_get_email($request) {
   return $body->email;
 }
 
-function cartback_flag($request) {
+function cartback_tag($request) {
   $email = cartback_get_email($request);
   cartback_handle_mailchimp($email);
   return true;
 }
 
 add_action('rest_api_init', function () {
-  register_rest_route('cartback/v1', '/flag', array(
+  register_rest_route('cartback/v1', '/tag', array(
     'methods' => 'POST',
-    'callback' => 'cartback_flag'
+    'callback' => 'cartback_tag'
   ));
 });

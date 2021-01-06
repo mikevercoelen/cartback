@@ -21,9 +21,9 @@ define('CARTBACK_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 include(CARTBACK_PLUGIN_PATH . 'admin/settings.php');
 // include(CARTBACK_PLUGIN_PATH . 'vendor/MailChimp.php');
-// include(CARTBACK_PLUGIN_PATH . 'includes/flag.php');
+// include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
 // TODO: make me ...
-//  include(CARTBACK_PLUGIN_PATH . 'includes/unflag.php');
+//  include(CARTBACK_PLUGIN_PATH . 'includes/untag.php');
 
 add_action('wp_enqueue_scripts', 'cartback_enqueue_scripts_styles');
 

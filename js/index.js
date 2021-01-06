@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime'
 import 'whatwg-fetch';
 
 (function () {
-  const POST_URL = '/wp-json/inject-checkout-scripts/v1/register-email'
+  const POST_URL = '/wp-json/cartback/v1/tag'
   const billingEmailInput = document.getElementById('billing_email')
 
   function validateEmail (email) {

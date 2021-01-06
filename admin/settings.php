@@ -2,7 +2,7 @@
 
 defined('ABSPATH') || exit;
 
-class CartBack_Inject_Checkout_Scripts_Settings {
+class CartBack_Settings {
   public function __construct() {
     add_action('admin_menu', array($this, 'add_admin_menu'));
     add_action('admin_init', array($this, 'init_settings'));
@@ -115,4 +115,4 @@ class CartBack_Inject_Checkout_Scripts_Settings {
   }
 }
 
-new CartBack_Inject_Checkout_Scripts_Settings;
+new CartBack_Settings;
