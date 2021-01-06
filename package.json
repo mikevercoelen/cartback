@@ -1,0 +1,26 @@
+{
+  "name": "inject-checkout-scripts-js",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "webpack",
+    "clean": "./scripts/clean.sh",
+    "lint": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.8.2",
+    "eslint": "^7.17.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "regenerator-runtime": "^0.13.7",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1"
+  },
+  "dependencies": {
+    "whatwg-fetch": "^3.5.0"
+  }
+}
