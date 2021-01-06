@@ -26,36 +26,35 @@ include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
 add_action('wp_enqueue_scripts', 'cartback_checkout_page');
 add_action( 'wp_enqueue_scripts', 'cartback_thankyou_page' );
 
+use \DrewM\MailChimp\MailChimp;
+
 function cartback_checkout_page() {
   if (class_exists('woocommerce') && is_checkout()) {
     wp_enqueue_script('cartback-checkout', CARTBACK_PLUGIN_URL . '/public/cartback.min.js', array(), false, true);
   }
 }
 
-function cartback_handle_untag_mailchimp($email) {
-  global $MC_TAG_STATUS_INACTIVE;
-  global $MC_TAG;
-
-  $subscriber_hash = MailChimp::subscriberHash($email);
-  $is_subscribed = cartback_mc_is_subscribed($email);
-
-  if (!$is_subscribed) {
-    return false;
-  }
-
-  cartback_mc_add_tags($subscriber_hash, array(
-    [
-      'name' => $MC_TAG,
-      'status' => $MC_TAG_STATUS_INACTIVE
-    ]
-  ));
-}
-
 function cartback_thankyou_page() {
   if (class_exists('woocommerce') && is_order_received_page()) {
+    global $MC_TAG_STATUS_INACTIVE;
+    global $MC_TAG;
+
     $order_id  = absint( get_query_var('order-received') );
     $order = new WC_Order($order_id);
     $email = $order->get_billing_email();
-    cartback_handle_untag_mailchimp($email);
+
+    $subscriber_hash = MailChimp::subscriberHash($email);
+    $is_subscribed = cartback_mc_is_subscribed($email);
+
+    if (!$is_subscribed) {
+      return false;
+    }
+
+    cartback_mc_add_tags($subscriber_hash, array(
+      [
+        'name' => $MC_TAG,
+        'status' => $MC_TAG_STATUS_INACTIVE
+      ]
+    ));
   }
 }
