@@ -1,4 +1,4 @@
-# CartBack - Abandoned cart Mailchimp automation for WooCommerce
+# Cartback - Abandoned cart Mailchimp automation for WooCommerce
 
 ## Development
 
