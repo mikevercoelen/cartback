@@ -20,6 +20,7 @@ define('CARTBACK_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CARTBACK_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 include(CARTBACK_PLUGIN_PATH . 'admin/settings.php');
+include(CARTBACK_PLUGIN_PATH . 'vendor/MailChimp.php');
 
 $CB_SETTINGS = get_option('cartback_setting');
 $MC_API_KEY = $CB_SETTINGS['api_key'];
@@ -28,7 +29,6 @@ $MC_LIST_ID = $CB_SETTINGS['list_id'];
 use \DrewM\MailChimp\MailChimp;
 
 if ( !empty($MC_API_KEY && $MC_LIST_ID) ) {
-  include(CARTBACK_PLUGIN_PATH . 'vendor/MailChimp.php');
   include(CARTBACK_PLUGIN_PATH . 'includes/tag.php');
 
   add_action('wp_enqueue_scripts', 'cartback_checkout_page');
