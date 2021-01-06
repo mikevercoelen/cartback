@@ -2,6 +2,8 @@
 
 defined('ABSPATH') || exit;
 
+// TODO: add default value for Mailchimp Tag to be "tmp-checking-out"
+
 class CartBack_Settings {
   public function __construct() {
     add_action('admin_menu', array($this, 'add_admin_menu'));
