@@ -34,8 +34,29 @@ function cartback_checkout_page() {
   }
 }
 
+function cartback_handle_untag_mailchimp($email) {
+  global $MC_TAG_STATUS_INACTIVE;
+
+  $subscriber_hash = MailChimp::subscriberHash($email);
+  $is_subscribed = cartback_mc_is_subscribed($email);
+
+  if (!$is_subscribed) {
+    return false;
+  }
+
+  cartback_mc_add_tags($subscriber_hash, array(
+    [
+      'name' => $MC_TAG,
+      'status' => $MC_TAG_STATUS_INACTIVE
+    ]
+  ))
+}
+
 function cartback_thankyou_page() {
   if (class_exists('woocommerce') && is_order_received_page()) {
-    // Thank you page code
+    $order_id  = absint( $wp->query_vars['order-received'] );
+    $order = new WC_Order($order_id);
+    $email = $order->get_billing_email();
+    cartback_handle_untag_mailchimp($email);
   }
 }
