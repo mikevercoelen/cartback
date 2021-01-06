@@ -4,6 +4,7 @@ defined('ABSPATH') || exit;
 
 use \DrewM\MailChimp\MailChimp;
 
+global $MC_API_KEY;
 $MailChimp = new MailChimp($MC_API_KEY);
 
 $MC_MEMBER_STATUS_NOT_FOUND = '404';
@@ -22,14 +23,16 @@ function cartback_get_email($request) {
 }
 
 function cartback_mc_is_subscribed($subscriber_hash) {
+  global $MC_MEMBER_STATUS_NOT_FOUND;
+
   $member = cartback_mc_get_member($subscriber_hash);
   $member_status = $member['status'];
 
   if ($member_status == $MC_MEMBER_STATUS_NOT_FOUND) {
-    return false
+    return false;
   }
 
-  return true
+  return true;
 }
 
 function cartback_mc_add_tags($subscriber_hash, $tags) {

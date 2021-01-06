@@ -36,6 +36,7 @@ function cartback_checkout_page() {
 
 function cartback_handle_untag_mailchimp($email) {
   global $MC_TAG_STATUS_INACTIVE;
+  global $MC_TAG;
 
   $subscriber_hash = MailChimp::subscriberHash($email);
   $is_subscribed = cartback_mc_is_subscribed($email);
@@ -49,12 +50,12 @@ function cartback_handle_untag_mailchimp($email) {
       'name' => $MC_TAG,
       'status' => $MC_TAG_STATUS_INACTIVE
     ]
-  ))
+  ));
 }
 
 function cartback_thankyou_page() {
   if (class_exists('woocommerce') && is_order_received_page()) {
-    $order_id  = absint( $wp->query_vars['order-received'] );
+    $order_id  = absint( get_query_var('order-received') );
     $order = new WC_Order($order_id);
     $email = $order->get_billing_email();
     cartback_handle_untag_mailchimp($email);

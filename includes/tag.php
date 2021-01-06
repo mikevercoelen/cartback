@@ -9,7 +9,6 @@ $MC_TAG = $CB_SETTINGS['mailchimp_tag'];
 $MC_TAG_HARDCODED = '_cartback';
 
 function cartback_handle_tag_mailchimp($email) {
-  global $MC_MEMBER_STATUS_NOT_FOUND;
   global $MC_TAG;
   global $MC_TAG_STATUS_ACTIVE;
   global $MC_TAG_HARDCODED;
@@ -18,7 +17,7 @@ function cartback_handle_tag_mailchimp($email) {
   $subscriber_hash = MailChimp::subscriberHash($email);
   $is_subscribed = cartback_mc_is_subscribed($subscriber_hash);
 
-  if (!is_subscribed) {
+  if (!$is_subscribed) {
     cartback_mc_subscribe($email, $MC_MEMBER_STATUS_UNSUBSCRIBED);
   }
 
@@ -28,7 +27,7 @@ function cartback_handle_tag_mailchimp($email) {
       'status' => $MC_TAG_STATUS_ACTIVE
     ],
     [
-      'name': $MC_TAG_HARDCODED,
+      'name' => $MC_TAG_HARDCODED,
       'status' => $MC_TAG_STATUS_ACTIVE
     ]
   ));
