@@ -6,6 +6,7 @@ $CB_SETTINGS = get_option('cartback_setting');
 $MC_API_KEY = $CB_SETTINGS['api_key'];
 $MC_LIST_ID = $CB_SETTINGS['list_id'];
 $MC_TAG = $CB_SETTINGS['mailchimp_tag'];
+$MC_TAG_HARDCODED = 'cartback';
 
 use \DrewM\MailChimp\MailChimp;
 
@@ -38,11 +39,16 @@ function cartback_mc_add_tag($subscriber_hash) {
   global $MC_TAG;
   global $MC_TAG_STATUS_ACTIVE;
   global $MC_LIST_ID;
+  global $MC_TAG_HARDCODED;
 
   return $MailChimp->post("lists/$MC_LIST_ID/members/$subscriber_hash/tags", [
     'tags' => array(
       [
         'name' => $MC_TAG,
+        'status' => $MC_TAG_STATUS_ACTIVE
+      ],
+      [
+        'name': $MC_TAG_HARDCODED,
         'status' => $MC_TAG_STATUS_ACTIVE
       ]
     )
