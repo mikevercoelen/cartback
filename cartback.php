@@ -32,3 +32,22 @@ function cartback_enqueue_scripts_styles() {
     wp_enqueue_script('cartback-checkout', CARTBACK_PLUGIN_URL . '/public/cartback.min.js', array(), false, true);
   }
 }
+
+function cartback_untag() {
+  global $MC_TAG;
+  global $MC_API_KEY;
+  global $MC_LIST_ID;
+
+  var_dump([
+    'apiKey' => $MC_API_KEY,
+    'listId' => $MC_LIST_ID,
+    'tag' => $MC_TAG
+  ]);
+}
+
+add_action('rest_api_init', function () {
+  register_rest_route('cartback/v1', '/untag', array(
+    'methods' => 'GET',
+    'callback' => 'cartback_untag'
+  ));
+});
