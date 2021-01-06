@@ -4,12 +4,12 @@
   Plugin Name:  CartBack
   Plugin URI:   https://github.com/mikevercoelen/cartback
   Description:  Abandoned cart Mailchimp automation for WooCommerce
-  Version:    0.1
-  Author:     Benbodhi
+  Version:      0.1
+  Author:       Benbodhi
   Author URI:   https://benbodhi.com
   Text Domain:  cartback
   Domain Path:  /languages
-  License:    GPLv2 or later
+  License:      GPLv2 or later
   License URI:  http://www.gnu.org/licenses/gpl-2.0.html
   Copyright 2021 and beyond | Benbodhi (email : wp@benbodhi.com)
 */
