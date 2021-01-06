@@ -8,80 +8,35 @@ $MC_LIST_ID = $CB_SETTINGS['list_id'];
 $MC_TAG = $CB_SETTINGS['mailchimp_tag'];
 $MC_TAG_HARDCODED = '_cartback';
 
-use \DrewM\MailChimp\MailChimp;
-
-$MailChimp = new MailChimp($MC_API_KEY);
-
-$MC_MEMBER_STATUS_NOT_FOUND = '404';
-$MC_MEMBER_STATUS_UNSUBSCRIBED = 'unsubscribed';
-$MC_TAG_STATUS_ACTIVE = 'active';
-
-function cartback_mc_get_member($subscriber_hash) {
-  global $MailChimp;
-  global $MC_LIST_ID;
-
-  return $MailChimp->get("lists/$MC_LIST_ID/members/$subscriber_hash");
-}
-
-function cartback_mc_subscribe($email) {
-  global $MailChimp;
-  global $MC_MEMBER_STATUS_UNSUBSCRIBED;
-  global $MC_LIST_ID;
-
-  return $MailChimp->post("lists/" . $MC_LIST_ID . "/members", [
-    'email_address' => $email,
-    'status' => $MC_MEMBER_STATUS_UNSUBSCRIBED
-  ]);
-}
-
-function cartback_mc_add_tag($subscriber_hash) {
-  global $MailChimp;
+function cartback_handle_tag_mailchimp($email) {
+  global $MC_MEMBER_STATUS_NOT_FOUND;
   global $MC_TAG;
   global $MC_TAG_STATUS_ACTIVE;
-  global $MC_LIST_ID;
   global $MC_TAG_HARDCODED;
-
-  return $MailChimp->post("lists/$MC_LIST_ID/members/$subscriber_hash/tags", [
-    'tags' => array(
-      [
-        'name' => $MC_TAG,
-        'status' => $MC_TAG_STATUS_ACTIVE
-      ],
-      [
-        'name': $MC_TAG_HARDCODED,
-        'status' => $MC_TAG_STATUS_ACTIVE
-      ]
-    )
-  ]);
-}
-
-function cartback_handle_mailchimp($email) {
-  global $MC_MEMBER_STATUS_NOT_FOUND;
+  global $MC_MEMBER_STATUS_UNSUBSCRIBED;
 
   $subscriber_hash = MailChimp::subscriberHash($email);
-  $member = cartback_mc_get_member($subscriber_hash);
-  $member_status = $member['status'];
+  $is_subscribed = cartback_mc_is_subscribed($subscriber_hash);
 
-  if ($member_status == $MC_MEMBER_STATUS_NOT_FOUND) {
-    cartback_mc_subscribe($email);
+  if (!is_subscribed) {
+    cartback_mc_subscribe($email, $MC_MEMBER_STATUS_UNSUBSCRIBED);
   }
 
-  cartback_mc_add_tag($subscriber_hash);
-}
-
-function cartback_get_email($request) {
-  if (is_user_logged_in()) {
-    $current_user = wp_get_current_user();
-    return $current_user->user_email;
-  }
-
-  $body = json_decode($request->get_body());
-  return $body->email;
+  cartback_mc_add_tags($subscriber_hash, array(
+    [
+      'name' => $MC_TAG,
+      'status' => $MC_TAG_STATUS_ACTIVE
+    ],
+    [
+      'name': $MC_TAG_HARDCODED,
+      'status' => $MC_TAG_STATUS_ACTIVE
+    ]
+  ));
 }
 
 function cartback_tag($request) {
   $email = cartback_get_email($request);
-  cartback_handle_mailchimp($email);
+  cartback_handle_tag_mailchimp($email);
   return true;
 }
 
