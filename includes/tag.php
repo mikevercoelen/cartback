@@ -71,7 +71,8 @@ function cartback_mc_add_tags($subscriber_hash, $tags) {
   global $MC_LIST_ID;
 
   return $MailChimp->post("lists/$MC_LIST_ID/members/$subscriber_hash/tags", [
-    'tags' => $tags
+    'tags' => $tags,
+    'is_syncing' => false
   ]);
 }
 
