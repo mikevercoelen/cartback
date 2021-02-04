@@ -9,19 +9,25 @@ $MC_LIST_ID = $CB_SETTINGS['list_id'];
 $MC_TAG = $CB_SETTINGS['mailchimp_tag'];
 $MC_TAG_HARDCODED = '_cartback';
 
+$MC_MEMBER_STATUS_NOT_FOUND = '404';
+$MC_MEMBER_STATUS_UNSUBSCRIBED = 'unsubscribed';
+$MC_MEMBER_STATUS_SUBSCRIBED = 'subscribed';
+$MC_TAG_STATUS_ACTIVE = 'active';
+$MC_TAG_STATUS_INACTIVE = 'inactive';
+
 $MailChimp = new MailChimp($MC_API_KEY);
 
 function cartback_handle_tag_mailchimp($email) {
   global $MC_TAG;
   global $MC_TAG_STATUS_ACTIVE;
   global $MC_TAG_HARDCODED;
-  global $MC_MEMBER_STATUS_UNSUBSCRIBED;
+  global $MC_MEMBER_STATUS_SUBSCRIBED;
 
   $subscriber_hash = MailChimp::subscriberHash($email);
   $is_subscribed = cartback_mc_is_subscribed($subscriber_hash);
 
   if (!$is_subscribed) {
-    cartback_mc_subscribe($email, $MC_MEMBER_STATUS_UNSUBSCRIBED);
+    cartback_mc_subscribe($email, $MC_MEMBER_STATUS_SUBSCRIBED);
   }
 
   cartback_mc_add_tags($subscriber_hash, array(
@@ -36,10 +42,6 @@ function cartback_handle_tag_mailchimp($email) {
   ));
 }
 
-$MC_MEMBER_STATUS_NOT_FOUND = '404';
-$MC_MEMBER_STATUS_UNSUBSCRIBED = 'unsubscribed';
-$MC_TAG_STATUS_ACTIVE = 'active';
-$MC_TAG_STATUS_INACTIVE = 'inactive';
 
 function cartback_get_email($request) {
   if (is_user_logged_in()) {
